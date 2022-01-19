@@ -15,6 +15,10 @@
 		.help-block.error {
 			color: red;
 		}
+
+		.col-xs-12, .sign-up-btn {
+			margin-top: 2%;
+		}
 	</style>
 </head>
 <body class="hold-transition login-page">
@@ -50,7 +54,7 @@
 				<span class="fa fa-lock form-control-feedback"></span>
 				<?php echo form_error('password', '<span class="help-block error">', '</span>'); ?>
 			</div>
-			<div class="row">
+			<div class="row" style="margin-top: -4%;">
 				<div class="col-lg-6 col-xs-12">
 					<button type="submit" class="btn btn-primary btn-block btn-flat">Masuk <i class="fa fa-sign-in"></i></button>
 				</div>
