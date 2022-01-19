@@ -277,7 +277,7 @@ desired effect
 			Anything you want
 		</div>
 		<!-- Default to the left -->
-		<strong>Copyright &copy; <?= date('Y') ?> <a href="#">Medan Software</a>.</strong> All rights reserved.
+		<strong>Copyright &copy; <?= date('Y') ?> <a href="#"><?= $this->config->item('app_name'); ?></a>.</strong> All rights reserved.
 	</footer>
 
 	<!-- Control Sidebar -->
