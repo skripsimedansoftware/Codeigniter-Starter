@@ -3,15 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Codeigniter | Starter</title>
+	<title><?= $this->config->item('app_name') ?></title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/plugins/') ?>DataTables/datatables.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/adminlte/') ?>bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/adminlte/') ?>bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/adminlte/') ?>dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/adminlte/') ?>dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/plugins/') ?>DataTables/datatables.min.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -61,11 +61,11 @@ desired effect
 	<header class="main-header">
 
 		<!-- Logo -->
-		<a href="<?php echo base_url() ?>" target="_blank" class="logo">
+		<a href="<?= base_url() ?>" target="_blank" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>A</b>LT</span>
+			<span class="logo-mini"><b>ADM</b></span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Admin</b>LTE</span>
+			<span class="logo-lg"><b>ADMIN</b></span>
 		</a>
 
 		<!-- Header Navbar -->
@@ -93,7 +93,7 @@ desired effect
 										<a href="#">
 											<div class="pull-left">
 												<!-- User Image -->
-												<img src="<?php echo (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
+												<img src="<?= (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
 											</div>
 											<!-- Message title and timestamp -->
 											<h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
@@ -169,16 +169,16 @@ desired effect
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<!-- The user image in the navbar-->
-							<img src="<?php echo (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="user-image" alt="User Image">
+							<img src="<?= (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="user-image" alt="User Image">
 							<!-- hidden-xs hides the username on small devices so only the image appears. -->
-							<span class="hidden-xs"><?php echo $user->full_name ?></span>
+							<span class="hidden-xs"><?= $user->full_name ?></span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- The user image in the menu -->
 							<li class="user-header">
-								<img src="<?php echo (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
+								<img src="<?= (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
 								<p>
-									<?php echo $user->full_name ?> - Web Developer
+									<?= $user->full_name ?> - Web Developer
 									<small>Member since Nov. 2012</small>
 								</p>
 							</li>
@@ -200,10 +200,10 @@ desired effect
 							<!-- Menu Footer-->
 							<li class="user-footer">
 								<div class="pull-left">
-									<a href="<?php echo base_url($this->router->fetch_class().'/profile') ?>" class="btn btn-default btn-flat">Profile</a>
+									<a href="<?= base_url($this->router->fetch_class().'/profile') ?>" class="btn btn-default btn-flat">Profile</a>
 								</div>
 								<div class="pull-right">
-									<a href="<?php echo base_url($this->router->fetch_class().'/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+									<a href="<?= base_url($this->router->fetch_class().'/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
 								</div>
 							</li>
 						</ul>
@@ -223,10 +223,10 @@ desired effect
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel">
 				<div class="pull-left image">
-					<img src="<?php echo (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image" style="max-height: 45px;">
+					<img src="<?= (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image" style="max-height: 45px;">
 				</div>
 				<div class="pull-left info">
-					<p><?php echo $user->full_name ?></p>
+					<p><?= $user->full_name ?></p>
 					<!-- Status -->
 					<a href="#"><i class="fa fa-circle text-success"></i> online</a>
 				</div>
@@ -247,7 +247,7 @@ desired effect
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header">HEADER</li>
 				<!-- Optionally, you can add icons to the links -->
-				<li class="<?php echo $this->router->fetch_method() == 'index'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
+				<li class="<?= $this->router->fetch_method() == 'index'?'active':'' ?>"><a href="<?= base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
 				<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
 				<li class="treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -266,7 +266,7 @@ desired effect
 
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
-		<?php echo $page ?>
+		<?= $page ?>
 	</div>
 	<!-- /.content-wrapper -->
 
@@ -277,7 +277,7 @@ desired effect
 			Anything you want
 		</div>
 		<!-- Default to the left -->
-		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Medan Software</a>.</strong> All rights reserved.
+		<strong>Copyright &copy; <?= date('Y') ?> <a href="#">Medan Software</a>.</strong> All rights reserved.
 	</footer>
 
 	<!-- Control Sidebar -->
@@ -354,24 +354,24 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="<?php echo base_url('assets/adminlte/') ?>bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<?= base_url('assets/adminlte/') ?>bower_components/jquery/dist/jquery.min.js"></script>
 
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?= base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!-- JQuery InputMask -->
-<script src="<?php echo base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.js"></script>
-<script src="<?php echo base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="<?php echo base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 <!-- SweetAlert2 -->
-<script src="<?php echo base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.all.min.js"></script>
+<script src="<?= base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.all.min.js"></script>
 
 <!-- DataTables -->
-<script src="<?php echo base_url('assets/plugins/') ?>DataTables/datatables.min.js"></script>
+<script src="<?= base_url('assets/plugins/') ?>DataTables/datatables.min.js"></script>
 
 <!-- AdminLTE App -->
-<script src="<?php echo base_url('assets/adminlte/') ?>dist/js/adminlte.min.js"></script>
+<script src="<?= base_url('assets/adminlte/') ?>dist/js/adminlte.min.js"></script>
 
 <script type="text/javascript">
 function readURL(input) {
