@@ -7,10 +7,10 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('template', ['module' => strtolower($this->router->fetch_class())]);
-		$this->load->model('user');
+		$this->load->model(['user', 'email_confirm']);
 		if (empty($this->session->userdata($this->router->fetch_class())))
 		{
-			if (!in_array($this->router->fetch_method(), ['login', 'register', 'forgot_password', 'reset_password']))
+			if (!in_array($this->router->fetch_method(), ['login', 'register', 'email_confirm', 'forgot_password', 'reset_password']))
 			{
 				redirect(base_url($this->router->fetch_class().'/login'), 'refresh');
 			}
@@ -223,7 +223,7 @@ class Admin extends CI_Controller {
 				$this->load->library('email');
 				$this->email->set_alt_message('Reset password');
 				$this->email->to($search->row()->email);
-				$this->email->from('no-reply@medansoftware.my.id', 'Medan Software');
+				$this->email->from($this->config->item('smtp_user'), 'Skripsi');
 				$this->email->subject('Ganti Kata Sandi');
 				$data['link'] = base_url($this->router->fetch_class().'/reset_password/'.$code);
 				$data['code'] = $code;
@@ -236,6 +236,7 @@ class Admin extends CI_Controller {
 				}
 				else
 				{
+					$this->email_confirm->new_code($search->row()->id, $code, 'reset-password');
 					$this->session->set_flashdata('forgot_password', array('status' => 'success', 'message' => 'Email permintaan atur ulang kata sandi sudah dikirim, silahkan verifikasi <a href="'.base_url($this->router->fetch_class().'/email_confirm').'">disini</a>'));
 					redirect(base_url($this->router->fetch_class().'/forgot_password'), 'refresh');
 				}
@@ -252,14 +253,115 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function email_confirm()
+	/**
+	 * Confirm email
+	 *
+	 * @param      integer  $code   Confirmation code
+	 */
+	public function email_confirm($code = NULL)
 	{
-		echo 'Confirm Code';
+		$data = array();
+
+		if (!empty($code))
+		{
+			$data = array('confirm_code' => $code);
+		}
+
+		if ($this->input->method() == 'post')
+		{
+			$data = $this->input->post();
+			$this->form_validation->set_rules('confirm_code', 'Confirm Code', 'trim|required');
+			if ($this->form_validation->run() == TRUE)
+			{
+				$email_confirm = $this->email_confirm->review_confirm_code($data['confirm_code']);
+				if ($email_confirm->num_rows() >= 1)
+				{
+					$email_confirm = $email_confirm->row();
+
+					if ($email_confirm->status == 'unconfirmed')
+					{
+						if (now() < human_to_unix($email_confirm->expire_date))
+						{
+							if ($email_confirm->type == 'account-activation')
+							{
+								$this->email_confirm->confirm($data['confirm_code']);
+								redirect(base_url($this->router->fetch_class().'/login'), 'refresh');
+							}
+							elseif ($email_confirm->type == 'reset-password')
+							{
+								$this->session->set_userdata('reset-password', $email_confirm->user_uid);
+								$this->email_confirm->confirm($data['confirm_code']);
+								redirect(base_url($this->router->fetch_class().'/reset_password'), 'refresh');
+							}
+							else
+							{
+								redirect(base_url(), 'refresh');
+							}
+						}
+						else
+						{
+							$this->session->set_flashdata('email_confirm', array('status' => 'warning', 'message' => 'Masa waktu kode sudah habis'));
+							redirect(base_url($this->router->fetch_class().'/email_confirm'), 'refresh');
+						}
+					}
+					else
+					{
+						$this->session->set_flashdata('email_confirm', array('status' => 'warning', 'message' => 'Kode sudah pernah digunakan'));
+						redirect(base_url($this->router->fetch_class().'/email_confirm'), 'refresh');
+					}
+				}
+				else
+				{
+					$this->session->set_flashdata('email_confirm', array('status' => 'error', 'message' => 'Kode tidak ditemukan'));
+					redirect(base_url($this->router->fetch_class().'/email_confirm'), 'refresh');
+				}
+			}
+			else
+			{
+				$this->load->view('admin/email_confirm');
+			}
+		}
+		else
+		{
+			$this->load->view('admin/email_confirm');
+		}
 	}
 
 	public function reset_password($code = NULL)
 	{
-		echo 'Reset Password';
+		if ($this->input->method() == 'post')
+		{
+			if ($this->session->has_userdata('reset-password'))
+			{
+				$this->form_validation->set_rules('new_password', 'Kata Sandi', 'trim|required');
+				$this->form_validation->set_rules('repeat_new_password', 'Ulangi Kata Sandi', 'trim|required|matches[new_password]');
+
+				if ($this->form_validation->run() == TRUE)
+				{
+					if ($this->user->update(array('password' => sha1($this->input->post('new_password'))), array('id' => $this->session->userdata('reset-password'))))
+					{
+						$this->session->unset_userdata('reset-password');
+					}
+
+					redirect(base_url($this->router->fetch_class().'/login'), 'refresh');
+				}
+				else
+				{
+					$this->load->view('admin/reset_password');
+				}
+			}
+		}
+		else
+		{
+			if ($this->session->has_userdata('reset-password'))
+			{
+				$this->load->view('admin/reset_password');
+			}
+			else
+			{
+				show_404();
+			}
+		}
 	}
 }
 

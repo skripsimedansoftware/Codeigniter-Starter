@@ -10,9 +10,9 @@ namespace Angeli;
 
 class MY_Model extends \CI_Model
 {
-	protected $db;
+	public $db;
 
-	protected $table;
+	public $table;
 
 	public function __construct()
 	{

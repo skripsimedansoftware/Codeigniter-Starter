@@ -20,6 +20,10 @@ class Email_confirm extends MY_Model
 		return $this->create(array('type' => $type, 'user_uid' => $user_uid, 'confirm_code' => $confirm_code, 'expire_date' => nice_date(unix_to_human(strtotime('+ 1 day')), 'Y-m-d H:i:s')));
 	}
 
+	public function review_confirm_code($code) {
+		return $this->read(array('confirm_code' => $code, 'status' => 'unconfirmed'));
+	}
+
 	public function confirm($confirm_code) {
 		return $this->update(array('status' => 'confirmed'), array('confirm_code' => $confirm_code));
 	}

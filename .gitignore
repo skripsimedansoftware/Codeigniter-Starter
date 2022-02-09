@@ -10,6 +10,9 @@ application/logs/*
 
 application/vendor/*
 
+application/config/email.php
+application/config/database.php
+
 uploads/*
 !uploads/index.html
 
