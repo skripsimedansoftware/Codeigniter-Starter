@@ -8,10 +8,10 @@
 
 $config['useragent'] = 'Skripsi';
 $config['protocol'] = 'smtp';
-$config['smtp_name'] = 'Pemko Medan';
-$config['smtp_host'] = 'mail.pemkomedan.my.id';
-$config['smtp_user'] = 'no-reply@pemkomedan.my.id';
-$config['smtp_pass'] = 'no-reply';
+$config['smtp_name'] = 'Skripsi';
+$config['smtp_host'] = '';
+$config['smtp_user'] = '';
+$config['smtp_pass'] = '';
 $config['smtp_port'] = 465;
 $config['smtp_crypto'] = 'ssl';
 $config['wordwrap'] = TRUE;
