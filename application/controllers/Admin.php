@@ -154,7 +154,7 @@ class Admin extends CI_Controller {
 	public function is_owned_data($val, $str)
 	{
 		$str = explode('.', $str);
-		$data = $this->db->get('user', array($str[1] => $val));
+		$data = $this->db->get_where('user', array($str[1] => $val));
 		if ($data->num_rows() >= 1)
 		{
 			if ($data->row()->id == $str[2])
@@ -270,7 +270,7 @@ class Admin extends CI_Controller {
 		if ($this->input->method() == 'post')
 		{
 			$data = $this->input->post();
-			$this->form_validation->set_rules('confirm_code', 'Confirm Code', 'trim|required');
+			$this->form_validation->set_rules('confirm_code', 'Konfirmasi Kode', 'trim|required');
 			if ($this->form_validation->run() == TRUE)
 			{
 				$email_confirm = $this->email_confirm->review_confirm_code($data['confirm_code']);
