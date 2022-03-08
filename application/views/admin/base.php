@@ -12,6 +12,27 @@
 	<link rel="stylesheet" href="<?= base_url('assets/adminlte/') ?>dist/css/skins/_all-skins.min.css">
 	<link rel="stylesheet" href="<?= base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.min.css">
 	<link rel="stylesheet" href="<?= base_url('assets/plugins/') ?>DataTables/datatables.min.css">
+
+	<!-- REQUIRED JS SCRIPTS -->
+	<!-- jQuery 3 -->
+	<script src="<?= base_url('assets/adminlte/') ?>bower_components/jquery/dist/jquery.min.js"></script>
+
+	<!-- Bootstrap 3.3.7 -->
+	<script src="<?= base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- JQuery InputMask -->
+	<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+	<!-- SweetAlert2 -->
+	<script src="<?= base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.all.min.js"></script>
+
+	<!-- DataTables -->
+	<script src="<?= base_url('assets/plugins/') ?>DataTables/datatables.min.js"></script>
+
+	<!-- AdminLTE App -->
+	<script src="<?= base_url('assets/adminlte/') ?>dist/js/adminlte.min.js"></script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -19,7 +40,7 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<!-- Google Font -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 	<style type="text/css">
 	.help-block.error {
 		color: red;
@@ -232,17 +253,6 @@ desired effect
 				</div>
 			</div>
 
-			<!-- search form (Optional) -->
-			<form action="#" method="get" class="sidebar-form">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>
-			<!-- /.search form -->
-
 			<!-- Sidebar Menu -->
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header">HEADER</li>
@@ -350,28 +360,6 @@ desired effect
 	<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
-<script src="<?= base_url('assets/adminlte/') ?>bower_components/jquery/dist/jquery.min.js"></script>
-
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- JQuery InputMask -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
-
-<!-- SweetAlert2 -->
-<script src="<?= base_url('assets/plugins/') ?>SweetAlert2/dist/sweetalert2.all.min.js"></script>
-
-<!-- DataTables -->
-<script src="<?= base_url('assets/plugins/') ?>DataTables/datatables.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="<?= base_url('assets/adminlte/') ?>dist/js/adminlte.min.js"></script>
 
 <script type="text/javascript">
 function readURL(input) {
